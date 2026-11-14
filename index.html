@@ -239,25 +239,22 @@ html[dir=ltr] .hero,html[dir=ltr] .drawer-item{text-align:left}
 
 <div id="buyModal" class="modal">
   <div class="modal-content" style="max-width:450px">
-    <div class="modal-header"><h3>خطوات الشراء والدفع</h3><button class="close-btn" onclick="closeBuyModal()">&times;</button></div>
-    <p style="margin-bottom:1rem">لشراء كتاب: <strong id="buyBookTitle" style="color:var(--primary)"></strong></p>
-    <p style="margin-bottom:.5rem">1. حوّل مبلغ <strong id="buyBookPrice" style="color:var(--accent)"></strong> عبر محفظة <strong>أورانج كاش</strong> على الرقم:</p>
-    <div style="background:#f1f5f9;padding:.75rem;text-align:center;font-size:1.2rem;font-weight:bold;border-radius:8px;margin-bottom:1rem;color:var(--primary)" id="displayOrangeNumber"></div>
-    <p style="margin-bottom:.75rem">2. صوّر <strong>سكرين شوت</strong> لعملية التحويل (هترفقه في الإيميل)، واكتب بياناتك:</p>
-    <form id="orderForm" method="POST" enctype="multipart/form-data" target="orderFrame" onsubmit="return submitOrder(event)">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_subject" id="fsSubject" value="طلب كتاب جديد">
-      <input type="hidden" name="الكتاب" id="fsBook"><input type="hidden" name="السعر" id="fsPrice">
-      <div class="form-group"><label>الاسم:</label><input type="text" id="buyerName" name="الاسم" placeholder="الاسم" required></div>
-      <div class="form-group"><label>رقم الهاتف (واتساب):</label><input type="tel" id="buyerPhone" name="الهاتف" placeholder="010xxxxxxxx" required></div>
-      <div class="form-group"><label>الإيميل (اختياري):</label><input type="email" id="buyerEmail" name="email" placeholder="name@example.com"></div>
-      <div class="form-group"><label>رقم عملية التحويل (اختياري):</label><input type="text" id="buyerTxId" name="رقم_العملية"></div>
-      <p style="background:#fffbeb;border-right:3px solid #f59e0b;padding:.6rem .8rem;border-radius:6px;font-size:.9rem;color:#92400e;margin-bottom:1rem">⚠️ هيفتح تطبيق الإيميل برسالة جاهزة. <strong>لازم ترفق سكرين شوت التحويل</strong> في الإيميل قبل ما تبعته.</p>
-      <p style="font-size:.9rem;color:#64748b">3. هيتم استلام ملف الـ PDF خلال <strong>24 ساعة</strong> بعد مراجعة التحويل.</p>
-      <button type="submit" class="btn-save">إرسال الطلب بالإيميل</button>
-    </form>
-    <a id="mailFallback" href="#" style="display:none;text-align:center;margin-top:.9rem;font-size:.85rem;color:#64748b">لو الطلب ما وصلش؟ ابعته بالإيميل</a>
+    <div class="modal-header">
+      <h3>خطوات الشراء والدفع</h3>
+      <button class="close-btn" onclick="closeBuyModal()">&times;</button>
+    </div>
+    <div>
+      <p style="margin-bottom:1rem">لشراء كتاب: <strong id="buyBookTitle" style="color:var(--primary)"></strong></p>
+      <p style="margin-bottom:.5rem">1. تحويل مبلغ <strong id="buyBookPrice" style="color:var(--accent)"></strong> عبر محفظة <strong>أورانج كاش</strong> على الرقم:</p>
+      <div style="background:#f1f5f9;padding:.75rem;text-align:center;font-size:1.2rem;font-weight:bold;border-radius:8px;margin-bottom:1rem;color:var(--primary)" id="displayOrangeNumber"></div>
+      <div class="form-group"><label>اسمك:</label><input type="text" id="buyerName" placeholder="أدخل اسمك الكامل"></div>
+      <div class="form-group"><label>رقم هاتف التحويل (أو رقم المحفظة المحول منها):</label><input type="text" id="buyerPhone" placeholder="مثال: 010xxxxxxxx"></div>
+      <div class="form-group"><label>رقم عملية التحويل (الرقم المرجعي):</label><input type="text" id="buyerTxId" placeholder="اكتب رقم العملية من رسالة التأكيد"></div>
+      <button class="btn-save" onclick="submitOrder()">إرسال طلب الشراء للمالك</button>
+      <div style="background:#fffbeb;border-right:3px solid #f59e0b;padding:.7rem .8rem;border-radius:6px;font-size:.9rem;color:#92400e;margin:1rem 0 .75rem">⚠️ <strong>مهم جداً:</strong> لازم ترسل <strong>سكرين شوت التحويل</strong> عبر الإيميل عشان يتم تأكيد طلبك.</div>
+      <button class="btn-save" style="background:var(--primary);margin-top:0" onclick="sendEmailOrder()">📧 إرسال سكرين التحويل عبر الإيميل</button>
+      <p style="margin-top:.9rem;font-size:.9rem;color:#64748b;text-align:center">📝 ملحوظة: سيتم استلام ملف الـ PDF خلال <strong>24 ساعة</strong> بعد مراجعة التحويل.</p>
+    </div>
   </div>
 </div>
 
@@ -402,10 +399,10 @@ function openBuyModal(id){
   document.getElementById('buyBookPrice').innerText=selectedBookForBuy.price+" جنيه";
   ['buyerName','buyerPhone','buyerTxId'].forEach(i=>document.getElementById(i).value='');
   if(currentUser){document.getElementById('buyerName').value=currentUser.name;document.getElementById('buyerPhone').value=currentUser.phone}
-  prepOrderForm();document.getElementById('buyModal').style.display='flex';
+  document.getElementById('buyModal').style.display='flex';
 }
 function closeBuyModal(){document.getElementById('buyModal').style.display='none'}
-function submitOrderOld(){
+function submitOrder(){
   const name=document.getElementById('buyerName').value.trim();
   const phone=document.getElementById('buyerPhone').value.trim();
   const txId=document.getElementById('buyerTxId').value.trim();
@@ -733,7 +730,7 @@ function prepOrderForm(){
   document.getElementById('buyerEmail').value='';
   document.getElementById('mailFallback').href='mailto:'+em+'?subject='+encodeURIComponent('طلب كتاب: '+bk.title)+'&body='+encodeURIComponent('الكتاب: '+bk.title+'\nالسعر: '+bk.price+' جنيه\nالاسم:\nرقم الهاتف:\n\n(مهم: أرفق سكرين شوت عملية التحويل)');
 }
-function submitOrder(e){
+function submitOrderMail(e){
   const f=document.getElementById('orderForm');
   const name=f.elements['الاسم'].value.trim(),phone=f.elements['الهاتف'].value.trim();
   if(!name||!phone){alert('اكتب اسمك ورقم هاتفك.');return false}
@@ -851,6 +848,34 @@ Object.assign(EN,{
 "لازم ترفق سكرين شوت التحويل":"You must attach the transfer screenshot",
 "في الإيميل قبل ما تبعته.":"to the email before sending it.",
 "هيفتح الإيميل دلوقتي. أرفق سكرين شوت التحويل وابعت الرسالة، وهيتم استلام الـ PDF خلال 24 ساعة بعد المراجعة.":"Your email will open now. Attach the transfer screenshot and send the message; you will receive the PDF within 24 hours after review."
+});
+Object.assign(EN,{
+"اسمك الكريم:":"Your name:","أدخل اسمك الكامل":"Enter your full name","1. تحويل مبلغ":"1. Transfer",
+"رقم هاتف التحويل (أو رقم المحفظة المحول منها):":"Phone number (or the wallet number you transferred from):","مثال: 010xxxxxxxx":"e.g. 010xxxxxxxx",
+"رقم عملية التحويل (الرقم المرجعي):":"Transaction reference number:","اكتب رقم العملية من رسالة التأكيد":"Enter the number from the confirmation message",
+"إرسال طلب الشراء للمالك":"Send purchase request to the owner",
+"يرجى إكمال جميع بيانات الطلب (الاسم، الهاتف، ورقم التحويل).":"Please fill in all order details (name, phone and transfer number).",
+"تم إرسال طلبك بنجاح! سيتم مراجعته وتفعيل رابط التحميل قريباً.":"Your order was sent successfully! It will be reviewed soon."
+});
+function sendEmailOrder(){
+  const name=document.getElementById('buyerName').value.trim(),phone=document.getElementById('buyerPhone').value.trim(),tx=document.getElementById('buyerTxId').value.trim();
+  if(!name||!phone){alert('اكتب اسمك ورقم هاتفك الأول.');return}
+  const bk=selectedBookForBuy,em=S('email'),key=bk.id+'|'+phone+'|'+tx;
+  if(window._lastOrderKey!==key){
+    window._lastOrderKey=key;
+    storeData.orders.push({id:Date.now(),bookId:bk.id,bookTitle:bk.title,name,phone,txId:tx||'—',status:'sent',pdfUrl:'#'});saveData();
+  }
+  const body='طلب شراء كتاب\n\nالكتاب: '+bk.title+'\nالسعر: '+bk.price+' جنيه\nالاسم: '+name+'\nرقم الهاتف: '+phone+(tx?'\nرقم عملية التحويل: '+tx:'')+'\n\n⚠️⚠️ مهم جداً: لازم ترفق سكرين شوت التحويل في هذا الإيميل قبل الإرسال، من غيره مش هنقدر نؤكد طلبك.\n\n📝 هيتم استلام ملف الـ PDF خلال 24 ساعة بعد مراجعة التحويل.';
+  const url='mailto:'+em+'?subject='+encodeURIComponent('طلب كتاب: '+bk.title+' (مرفق سكرين شوت التحويل)')+'&body='+encodeURIComponent(body);
+  alert('هيفتح الإيميل دلوقتي برسالة جاهزة فيها بيانات طلبك.\n⚠️ لازم ترفق سكرين شوت التحويل في الإيميل قبل ما تبعته، من غيره مش هيتم تأكيد الطلب.\nهيتم استلام الـ PDF خلال 24 ساعة بعد مراجعة التحويل.');
+  window.location.href=url;
+}
+Object.assign(EN,{
+"اسمك:":"Your name:","مهم جداً:":"Very important:","لازم ترسل":"You must send","سكرين شوت التحويل":"the transfer screenshot","عبر الإيميل عشان يتم تأكيد طلبك.":"by email so your order can be confirmed.",
+"📧 إرسال سكرين التحويل عبر الإيميل":"📧 Send the transfer screenshot by email","📝 ملحوظة: سيتم استلام ملف الـ PDF خلال":"📝 Note: you will receive the PDF within",
+"اكتب اسمك ورقم هاتفك الأول.":"Enter your name and phone number first.","هيفتح الإيميل دلوقتي برسالة جاهزة فيها بيانات طلبك.":"Your email will open now with a ready message containing your order details.",
+"⚠️ لازم ترفق سكرين شوت التحويل في الإيميل قبل ما تبعته، من غيره مش هيتم تأكيد الطلب.":"⚠️ You must attach the transfer screenshot to the email before sending it; without it the order will not be confirmed.",
+"هيتم استلام الـ PDF خلال 24 ساعة بعد مراجعة التحويل.":"You will receive the PDF within 24 hours after we review the transfer."
 });
 if(LANG==='en')setLang('en');
 </script>

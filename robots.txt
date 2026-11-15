@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://booklibstore-rgb.github.io/booklib.store/sitemap.xml

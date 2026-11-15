@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BookLib Store | متجر الكتب الرقمية وكتب PDF العربية</title>
+<meta name="description" content="BookLib Store متجر عربي للكتب الرقمية بصيغة PDF. اكتشف كتبًا عربية في تطوير الذات والقصص والعمل الحر، وتعرّف على طريقة الطلب والاستلام.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://booklibstore-rgb.github.io/booklib.store/">
+<meta property="og:site_name" content="BookLib Store">
+<meta property="og:title" content="BookLib Store | متجر الكتب الرقمية">
+<meta property="og:description" content="اكتشف الكتب الرقمية العربية بصيغة PDF على BookLib Store.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://booklibstore-rgb.github.io/booklib.store/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BookLib Store | متجر الكتب الرقمية">
+<meta name="twitter:description" content="متجر عربي للكتب الرقمية بصيغة PDF.">
+<style>
+:root{--primary:#0f172a;--primary-dark:#1e293b;--accent:#059669;--bg-color:#f8fafc;--text-color:#1e293b;--card-bg:#fff;--border-color:#e2e8f0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+body{background:var(--bg-color);color:var(--text-color);line-height:1.6;padding-bottom:50px}
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;max-width:1200px;margin:0 auto}
+.logo{font-size:1.75rem;font-weight:bold;color:var(--primary);letter-spacing:-.5px}
+.btn-admin-top{background:var(--primary);color:#fff;border:none;padding:.6rem 1.2rem;font-size:.95rem;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:.5rem;box-shadow:0 2px 4px rgba(0,0,0,.1);transition:background .2s}
+.btn-admin-top:hover{background:var(--primary-dark)}
+.hero{max-width:900px;margin:2rem auto;padding:2rem 1.5rem;text-align:right}
+.hero-badge{display:inline-block;font-size:.9rem;color:var(--accent);font-weight:600;margin-bottom:.75rem}
+.hero h1{font-size:2.75rem;color:var(--primary);margin-bottom:1.2rem;line-height:1.3}
+.hero p{font-size:1.1rem;color:#64748b;margin-bottom:2rem;max-width:750px;line-height:1.8}
+.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary-custom{background:var(--accent);color:#fff;padding:.8rem 1.75rem;border-radius:8px;text-decoration:none;font-weight:bold;border:none;cursor:pointer;font-size:1rem;display:inline-flex;align-items:center;gap:.5rem;transition:background .2s}
+.btn-primary-custom:hover{background:#047857}
+.btn-secondary-custom{background:transparent;color:var(--primary);padding:.8rem 1.75rem;border-radius:8px;text-decoration:none;font-weight:bold;border:1px solid var(--border-color);cursor:pointer;font-size:1rem;transition:background .2s}
+.btn-secondary-custom:hover{background:#f1f5f9}
+.container{max-width:1100px;margin:0 auto;padding:0 1.5rem}
+.section-title{font-size:2rem;color:var(--primary);margin-bottom:.5rem}
+.search-filter-box{margin:1.5rem 0 2rem;display:flex;flex-direction:column;gap:1rem}
+.search-input{width:100%;padding:.9rem 1rem;border:1px solid var(--border-color);border-radius:10px;font-size:1rem;background:#fff;outline:none}
+.search-input:focus{border-color:var(--accent)}
+.categories-chips{display:flex;gap:.5rem;overflow-x:auto;padding-bottom:.5rem}
+.chip{background:#fff;border:1px solid var(--border-color);padding:.5rem 1.25rem;border-radius:8px;cursor:pointer;font-size:.95rem;white-space:nowrap;transition:all .2s}
+.chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.books-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:1.5rem}
+.book-card{background:var(--card-bg);border-radius:14px;overflow:hidden;box-shadow:0 4px 6px -1px rgba(0,0,0,.03);display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--border-color);transition:transform .2s}
+.book-card:hover{transform:translateY(-3px);box-shadow:0 10px 15px -3px rgba(0,0,0,.05)}
+.book-cover{height:190px;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);display:flex;align-items:center;justify-content:center;color:var(--primary);font-weight:bold;font-size:1.2rem;text-align:center;padding:1rem}
+.book-info{padding:1.5rem}
+.book-category{font-size:.85rem;color:var(--accent);font-weight:bold;margin-bottom:.5rem}
+.book-title{font-size:1.25rem;margin-bottom:.5rem;color:var(--primary)}
+.book-desc{font-size:.95rem;color:#64748b;margin-bottom:1rem}
+.book-footer{padding:1rem 1.5rem;background:#f8fafc;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border-color)}
+.book-price{font-size:1.2rem;font-weight:bold;color:var(--accent)}
+.btn-buy{background:var(--primary);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:8px;cursor:pointer;font-weight:500;transition:background .2s}
+.btn-buy:hover{background:var(--accent)}
+.empty-state{background:#fff;border:1px solid var(--border-color);border-radius:16px;padding:3rem 2rem;text-align:center;margin:2rem 0}
+.empty-state h3{font-size:1.5rem;color:var(--primary);margin-bottom:.75rem}
+.empty-state p{color:#64748b;margin-bottom:1.5rem}
+.steps-section{margin:5rem 0 3rem;border-top:1px solid var(--border-color);padding-top:3rem}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2rem}
+.step-card{background:#fff;border:1px solid var(--border-color);padding:2rem;border-radius:14px}
+.step-number{font-size:1.5rem;font-weight:bold;color:var(--accent);margin-bottom:1rem}
+.step-title{font-size:1.2rem;color:var(--primary);margin-bottom:.75rem}
+.step-desc{color:#64748b;font-size:.95rem}
+footer{border-top:1px solid var(--border-color);margin-top:4rem;padding:2rem 1.5rem;background:#fff;text-align:center;color:#64748b;font-size:.95rem}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,23,42,.6);z-index:1000;justify-content:center;align-items:center;padding:1rem}
+.modal-content{background:#fff;width:100%;max-width:550px;max-height:90vh;border-radius:16px;overflow-y:auto;padding:2rem;box-shadow:0 20px 25px -5px rgba(0,0,0,.2)}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;border-bottom:1px solid var(--border-color);padding-bottom:1rem}
+.close-btn{background:none;border:none;font-size:1.5rem;cursor:pointer;color:#64748b}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;margin-bottom:.5rem;font-weight:600;color:var(--primary)}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:.75rem 1rem;border:1px solid var(--border-color);border-radius:8px;font-size:1rem;outline:none}
+.form-group input:focus{border-color:var(--accent)}
+.btn-save{background:var(--accent);color:#fff;border:none;padding:.8rem;border-radius:8px;font-size:1rem;cursor:pointer;width:100%;font-weight:bold;margin-top:1rem;transition:background .2s}
+.btn-save:hover{background:#047857}
+.admin-section{background:#f8fafc;border:1px solid var(--border-color);padding:1.25rem;border-radius:10px;margin-bottom:1.5rem}
+.admin-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;background:#f1f5f9;padding:.3rem;border-radius:8px}
+.admin-tab{flex:1;padding:.6rem;border:none;background:transparent;cursor:pointer;font-weight:600;border-radius:6px;color:#64748b;transition:all .2s}
+.admin-tab.active{background:#fff;color:var(--primary);box-shadow:0 2px 4px rgba(0,0,0,.05)}
+.menu-btn{background:var(--primary);color:#fff;border:none;width:42px;height:42px;border-radius:8px;font-size:1.3rem;cursor:pointer}
+.drawer-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:1100}
+.drawer{position:fixed;top:0;right:0;height:100%;width:290px;max-width:85%;background:#fff;z-index:1200;transform:translateX(100%);transition:transform .25s;padding:1.25rem;padding-top:calc(1.25rem + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:.4rem;overflow-y:auto;box-shadow:-8px 0 24px rgba(0,0,0,.15)}
+.drawer.open{transform:none}
+.drawer-item{background:none;border:none;text-align:right;padding:.8rem .9rem;border-radius:8px;font-size:1rem;cursor:pointer;color:var(--primary);width:100%}
+.drawer-item:hover{background:#f1f5f9}
+.drawer h4{margin:1rem .9rem .3rem;color:#64748b;font-size:.85rem}
+.user-card{background:#f1f5f9;padding:.9rem;border-radius:10px;margin-bottom:.5rem}
+.size-row{display:flex;gap:.5rem;padding:.3rem .9rem}
+.size-row button{flex:1;padding:.5rem;border:1px solid var(--border-color);background:#fff;border-radius:8px;cursor:pointer;font-size:.9rem}
+.about-box{background:#fff;border:1px solid var(--border-color);border-radius:14px;padding:2rem;margin-top:1rem;color:#475569;line-height:1.9}
+.auth-tabs{display:flex;gap:.5rem;margin-bottom:1.25rem;background:#f1f5f9;padding:.3rem;border-radius:8px}
+.auth-tabs button{flex:1;padding:.6rem;border:none;background:transparent;cursor:pointer;font-weight:600;border-radius:6px;color:#64748b}
+.auth-tabs button.active{background:#fff;color:var(--primary);box-shadow:0 2px 4px rgba(0,0,0,.05)}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin-bottom:1rem}
+.stat-card{background:#fff;border:1px solid var(--border-color);border-radius:10px;padding:.8rem}
+.stat-card small{display:block;color:#64748b;font-size:.8rem}
+.stat-card b{font-size:1.25rem;color:var(--primary)}
+.stat-box{background:#fff;border:1px solid var(--border-color);border-radius:10px;padding:1rem;margin-bottom:1rem}
+.stat-box h4{color:var(--primary);margin-bottom:.6rem}
+.bar-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem;font-size:.85rem}
+.bar-row .lbl{width:38%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-row .bar{height:10px;background:var(--accent);border-radius:5px;min-width:3px}
+.cols{display:flex;align-items:flex-end;gap:.4rem;height:110px}
+.cols div{flex:1;text-align:center;font-size:.7rem;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.cols i{display:block;background:var(--accent);border-radius:4px 4px 0 0;min-height:2px}
+.tip{background:#ecfdf5;border-right:3px solid var(--accent);padding:.6rem .8rem;border-radius:6px;margin-bottom:.5rem;font-size:.9rem;color:#065f46}
+.tip.warn{background:#fffbeb;border-color:#f59e0b;color:#92400e}
+.book-cover{padding:0;overflow:hidden;height:250px;background:#f1f5f9}
+.book-cover img{width:100%;height:100%;object-fit:contain}
+html.dark{filter:invert(1) hue-rotate(180deg);background:#fff}
+html.dark img{filter:invert(1) hue-rotate(180deg)}
+.wa-btn{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:54px;height:54px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.25);z-index:900}
+html[dir=ltr] .hero,html[dir=ltr] .drawer-item{text-align:left}
+@media(max-width:600px){.hero h1{font-size:2rem}.top-bar{padding:1rem}.admin-tab{font-size:.8rem;padding:.5rem .2rem}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <button class="menu-btn" onclick="toggleDrawer(true)" aria-label="القائمة">☰</button>
+  <div class="logo">Booklib</div>
+  <button class="btn-admin-top" id="langBtn" data-notr onclick="toggleLang()" style="padding:.5rem .8rem">EN</button>
+  <button class="btn-admin-top" id="topAccountBtn" onclick="accountClick()">تسجيل الدخول</button>
+</div>
+
+<section class="hero">
+  <span class="hero-badge">متجر الكتب الرقمية · تسليم فوري بصيغة PDF</span>
+  <h1>مكتبتك الرقمية لتحميل الكتب وقراءتها فوراً</h1>
+  <p>اكتشف مجموعة مختارة من الكتب العربية العملية في تطوير الذات، القصص الملهمة، والعمل الحر. اطلب نسختك الرقمية بسهولة عبر أورانج كاش واستلم ملف الـ PDF خلال 24 ساعة من تأكيد التحويل.</p>
+  <div class="hero-buttons">
+    <a href="#booksSection" class="btn-primary-custom">تصفح الكتب المتاحة ↘</a>
+    <button onclick="openMyOrders()" class="btn-secondary-custom">طلباتي وتحميل الكتب</button>
+  </div>
+</section>
+
+<div class="container" id="booksSection">
+  <h2 class="section-title">الكتب المتاحة للتحميل</h2>
+  <p id="booksCountText" style="color:#64748b;margin-bottom:1.5rem">0 كتب متوفرة بصيغة PDF عالية الجودة</p>
+  <div class="search-filter-box">
+    <input type="text" id="searchInput" class="search-input" placeholder="ابحث باسم الكتاب أو التصنيف..." oninput="filterBooks()">
+    <div class="categories-chips" id="categoriesContainer">
+      <div class="chip active" onclick="filterCategory('الكل', this)">الكل</div>
+    </div>
+  </div>
+  <div id="booksContainer"></div>
+</div>
+
+<section class="container">
+  <div class="steps-section">
+    <h2 class="section-title" style="text-align:center">كيف تحصل على كتابك؟</h2>
+    <p style="text-align:center;color:#64748b;margin-top:.5rem">ثلاث خطوات بسيطة لشراء أي كتاب واستلام ملف الـ PDF مباشرة.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">.01</div>
+        <div class="step-title">اختر الكتاب المناسب</div>
+        <div class="step-desc">اضغط على «احصل على الكتاب» في البطاقة لعرض تفاصيل السعر ورقم التحويل الخاص بالمتجر.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">.02</div>
+        <div class="step-title">حوّل وأكّد طلبك أونلاين</div>
+        <div class="step-desc">حوّل قيمة الكتاب على رقم أورانج كاش <span id="stepOrangeNum" style="font-weight:bold;color:var(--primary)">01223456789</span> وابعت سكرين شوت التحويل مع طلبك بالإيميل.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">.03</div>
+        <div class="step-title">استلم كتابك خلال 24 ساعة</div>
+        <div class="step-desc">هيتم استلام ملف الـ PDF خلال 24 ساعة بعد مراجعة التحويل. لأي استفسار راسلنا على <span id="stepEmail" style="word-break:break-all">booklib.store@gmail.com</span>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container" id="about" style="margin-top:4rem">
+  <h2 class="section-title">نبذة عن Booklib</h2>
+  <div class="about-box">
+    <p><strong>فكرة المتجر:</strong> Booklib متجر عربي للكتب الرقمية بصيغة PDF. الفكرة بسيطة: تختار الكتاب، تحوّل ثمنه عبر أورانج كاش، وترفع سكرين شوت التحويل، وتستلم الكتاب خلال 24 ساعة.</p>
+    <p style="margin-top:.75rem">بنقدّم كتب عملية في تطوير الذات والقصص الملهمة والعمل الحر، بأسعار مناسبة وبدون تعقيد، عشان القراءة توصل لأي حد في أي وقت من الموبايل أو الكمبيوتر.</p>
+    <p style="margin-top:.75rem"><strong>إزاي بنشتغل؟</strong> كل طلب بنراجع فيه التحويل يدوياً، وبعدها بنبعتلك ملف الـ PDF خلال 24 ساعة على الواتساب أو الإيميل. لو عندك أي استفسار راسلنا على البريد الموجود أسفل الصفحة.</p>
+  </div>
+</section>
+
+<footer>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;max-width:1000px;margin:0 auto">
+    <div>Booklib &nbsp;·&nbsp; متجر الكتب الرقمية</div>
+    <div id="footerEmail">booklib.store@gmail.com</div>
+    <div>
+      <a href="#" onclick="openMyOrders();return false;" style="color:#64748b;text-decoration:none;margin-left:15px">طلباتي</a>
+      <a href="#" onclick="openAdmin();return false;" style="color:#64748b;text-decoration:none">لوحة تحكم المالك</a>
+    </div>
+  </div>
+<div style="margin-top:1rem;font-size:.85rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+    <a href="#" onclick="openDoc('refund');return false" style="color:#64748b">سياسة الاسترجاع</a>
+    <a href="#" onclick="openDoc('terms');return false" style="color:#64748b">الشروط والأحكام</a>
+    <a href="#" onclick="openDoc('privacy');return false" style="color:#64748b">سياسة الخصوصية</a>
+    <a href="#" onclick="openDoc('faq');return false" style="color:#64748b">الأسئلة الشائعة</a>
+  </div>
+</footer>
+
+<div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer(false)"></div>
+<aside class="drawer" id="drawer">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
+    <strong style="font-size:1.3rem;color:var(--primary)">Booklib</strong>
+    <button class="close-btn" onclick="toggleDrawer(false)">&times;</button>
+  </div>
+  <div class="user-card" id="drawerUser"></div>
+  <button class="drawer-item" onclick="goTo('booksSection')">📚 تصفح الكتب</button>
+  <button class="drawer-item" onclick="toggleDrawer(false);openMyOrders()">📥 طلباتي وتحميل الكتب</button>
+  <button class="drawer-item" onclick="goTo('about')">ℹ️ نبذة عن المتجر</button>
+  <button class="drawer-item" onclick="openDoc('refund')">↩️ سياسة الاسترجاع</button>
+  <button class="drawer-item" onclick="openDoc('terms')">📜 الشروط والأحكام</button>
+  <button class="drawer-item" onclick="openDoc('privacy')">🔒 سياسة الخصوصية</button>
+  <button class="drawer-item" onclick="openDoc('faq')">❓ الأسئلة الشائعة</button>
+  <h4>الإعدادات</h4>
+  <div style="padding:0 .9rem;font-size:.9rem;color:#64748b">حجم الخط</div>
+  <div class="size-row">
+    <button onclick="setFont(-1)">أ-</button>
+    <button onclick="setFont(0)">عادي</button>
+    <button onclick="setFont(1)">أ+</button>
+  </div>
+  <button class="drawer-item" id="drawerLang" data-notr onclick="toggleLang()">🌐 English</button>
+  <button class="drawer-item" onclick="toggleDark()">🌓 الوضع الليلي / النهاري</button>
+  <button class="drawer-item" style="margin-top:.5rem" onclick="toggleDrawer(false);openAdmin()">🔑 لوحة المالك</button>
+</aside>
+
+<div id="authModal" class="modal">
+  <div class="modal-content" style="max-width:430px">
+    <div class="modal-header">
+      <h3 id="authTitle">تسجيل الدخول</h3>
+      <button class="close-btn" onclick="closeAuth()">&times;</button>
+    </div>
+    <div class="auth-tabs">
+      <button id="authTabLogin" class="active" onclick="setAuthMode('login')">دخول</button>
+      <button id="authTabRegister" onclick="setAuthMode('register')">حساب جديد</button>
+    </div>
+    <div class="form-group" id="authNameGroup" style="display:none"><label>الاسم</label><input type="text" id="authName" placeholder="اسمك الكامل"></div>
+    <div class="form-group"><label>رقم الهاتف</label><input type="tel" id="authPhone" placeholder="010xxxxxxxx"></div>
+    <div class="form-group"><label>كلمة المرور</label><input type="password" id="authPass" placeholder="6 أحرف على الأقل"></div>
+    <p id="authMsg" style="color:#ef4444;font-size:.9rem;min-height:1.2rem"></p>
+    <button class="btn-save" id="authSubmitBtn" onclick="submitAuth()">دخول</button>
+  </div>
+</div>
+
+<iframe name="orderFrame" style="display:none" title="orderFrame"></iframe>
+<div id="docModal" class="modal"><div class="modal-content">
+  <div class="modal-header"><h3 id="docTitle"></h3><button class="close-btn" onclick="document.getElementById('docModal').style.display='none'">&times;</button></div>
+  <div id="docBody" style="white-space:pre-line;line-height:1.9;color:#475569"></div>
+</div></div>
+
+<div id="buyModal" class="modal">
+  <div class="modal-content" style="max-width:450px">
+    <div class="modal-header">
+      <h3>خطوات الشراء والدفع</h3>
+      <button class="close-btn" onclick="closeBuyModal()">&times;</button>
+    </div>
+    <div>
+      <p style="margin-bottom:1rem">لشراء كتاب: <strong id="buyBookTitle" style="color:var(--primary)"></strong></p>
+      <p style="margin-bottom:.5rem">1. تحويل مبلغ <strong id="buyBookPrice" style="color:var(--accent)"></strong> عبر محفظة <strong>أورانج كاش</strong> على الرقم:</p>
+      <div style="background:#f1f5f9;padding:.75rem;text-align:center;font-size:1.2rem;font-weight:bold;border-radius:8px;margin-bottom:1rem;color:var(--primary)" id="displayOrangeNumber"></div>
+      <div class="form-group"><label>اسمك:</label><input type="text" id="buyerName" placeholder="أدخل اسمك الكامل"></div>
+      <div class="form-group"><label>رقم هاتف التحويل (أو رقم المحفظة المحول منها):</label><input type="text" id="buyerPhone" placeholder="مثال: 010xxxxxxxx"></div>
+      <div class="form-group"><label>رقم عملية التحويل (الرقم المرجعي):</label><input type="text" id="buyerTxId" placeholder="اكتب رقم العملية من رسالة التأكيد"></div>
+      <button class="btn-save" onclick="submitOrder()">إرسال طلب الشراء للمالك</button>
+      <div style="background:#fffbeb;border-right:3px solid #f59e0b;padding:.7rem .8rem;border-radius:6px;font-size:.9rem;color:#92400e;margin:1rem 0 .75rem">⚠️ <strong>مهم جداً:</strong> لازم ترسل <strong>سكرين شوت التحويل</strong> عبر الإيميل عشان يتم تأكيد طلبك.</div>
+      <button class="btn-save" style="background:var(--primary);margin-top:0" onclick="sendEmailOrder()">📧 إرسال سكرين التحويل عبر الإيميل</button>
+      <p style="margin-top:.9rem;font-size:.9rem;color:#64748b;text-align:center">📝 ملحوظة: سيتم استلام ملف الـ PDF خلال <strong>24 ساعة</strong> بعد مراجعة التحويل.</p>
+    </div>
+  </div>
+</div>
+
+<div id="myOrdersModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>متابعة طلباتي وتحميل الكتب</h3>
+      <button class="close-btn" onclick="closeMyOrders()">&times;</button>
+    </div>
+    <div class="form-group">
+      <label>أدخل رقم هاتفك المسجل أثناء الشراء:</label>
+      <div style="display:flex;gap:.5rem">
+        <input type="text" id="searchPhoneInput" placeholder="رقم الهاتف...">
+        <button class="btn-primary-custom" onclick="searchMyOrders()" style="padding:.5rem 1rem">بحث</button>
+      </div>
+    </div>
+    <div id="myOrdersResult" style="margin-top:1.5rem">
+      <p style="color:#64748b;text-align:center">ابحث برقم هاتفك لعرض الطلبات والروابط المتاحة.</p>
+    </div>
+  </div>
+</div>
+
+<div id="adminModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>لوحة تحكم المالك</h3>
+      <button class="close-btn" onclick="closeAdmin()">&times;</button>
+    </div>
+    <div id="loginSection">
+      <div class="form-group"><label id="loginLabel">أدخل كلمة المرور</label><input type="password" id="adminPassword" placeholder="كلمة المرور"></div>
+      <div class="form-group" id="confirmGroup" style="display:none"><label id="confirmLabel">أعد كتابة كلمة المرور</label><input type="password" id="adminPassword2" placeholder="تأكيد"></div>
+      <button class="btn-save" id="loginBtn" onclick="checkPassword()">دخول لوحة التحكم</button>
+      <button id="forgotBtn" onclick="prepLogin('recover')" style="background:none;border:none;color:#64748b;cursor:pointer;margin-top:.75rem;width:100%;font-size:.9rem">نسيت كلمة المرور؟</button>
+    </div>
+    <div id="adminPanelContent" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <span style="font-weight:bold;color:var(--accent)">مرحباً بك يا مالك المتجر</span>
+        <button onclick="logoutAdmin()" style="background:none;border:none;color:#ef4444;cursor:pointer;font-weight:bold">تسجيل الخروج ↪</button>
+      </div>
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchAdminTab('stats',this)" id="tabStatsBtn">📊 إحصائيات</button>
+        <button class="admin-tab" onclick="switchAdminTab('orders',this)" id="tabOrdersBtn">الطلبات (<span id="ordersCountBadge">0</span>)</button>
+        <button class="admin-tab" onclick="switchAdminTab('books',this)" id="tabBooksBtn">الكتب (<span id="booksCountBadge">0</span>)</button>
+        <button class="admin-tab" onclick="switchAdminTab('settings',this)">بيانات الدفع</button>
+        <button class="admin-tab" onclick="switchAdminTab('addBook',this)">إضافة كتاب</button>
+      </div>
+      <div id="adminTabStats" class="admin-tab-content"><div id="adminStats"></div></div>
+      <div id="adminTabOrders" class="admin-tab-content" style="display:none"><div id="adminOrdersList"></div></div>
+      <div id="adminTabBooks" class="admin-tab-content" style="display:none"><div id="adminBooksList"></div></div>
+      <div id="adminTabSettings" class="admin-tab-content" style="display:none">
+        <div class="admin-section">
+          <div class="form-group"><label>رقم أورانج كاش:</label><input type="text" id="settingOrange"></div>
+          <div class="form-group"><label>البريد الإلكتروني:</label><input type="email" id="settingEmail"></div>
+          <div class="form-group"><label>رقم واتساب المتجر (مثال: 01012345678):</label><input type="tel" id="settingWA"></div>
+          
+          <button class="btn-save" onclick="saveSettings()">حفظ التعديلات</button>
+          <h4 style="margin:1.5rem 0 .5rem;color:var(--primary)">نشر الكتب للزوار</h4>
+          <p style="font-size:.85rem;color:#64748b;margin-bottom:.5rem">الكتب اللي بتضيفها بتظهر عندك بس. اضغطي الزر ده لتنزيل ملف catalog.json، وارفعيه على GitHub (Add file ثم Upload files) عشان الكتب والأغلفة تظهر للزوار.</p>
+          <button class="btn-save" style="background:var(--primary)" onclick="exportCatalog()">📤 تنزيل catalog.json</button>
+          <h4 style="margin:1.5rem 0 .75rem;color:var(--primary)">تغيير كلمة مرور لوحة التحكم</h4>
+          <div class="form-group"><label>كلمة المرور الحالية</label><input type="password" id="settingOldPass"></div>
+          <div class="form-group"><label>كلمة المرور الجديدة (6 أحرف على الأقل)</label><input type="password" id="settingPass"></div>
+          <button class="btn-save" style="background:var(--primary)" onclick="changePassword()">تغيير كلمة المرور</button>
+          <button class="btn-save" style="background:#fff;color:var(--primary);border:1px solid var(--border-color)" onclick="newRecovery()">إنشاء كود استرجاع جديد</button>
+          <div id="newCodeBox" style="display:none;margin-top:.75rem;padding:.9rem;background:#fffbeb;border-radius:8px;text-align:center;font-weight:bold;letter-spacing:1px;user-select:all;direction:ltr"></div>
+        </div>
+      </div>
+      <div id="adminTabAddBook" class="admin-tab-content" style="display:none">
+        <div class="admin-section">
+          <div class="form-group"><label>عنوان الكتاب</label><input type="text" id="newTitle" placeholder="مثال: دليل النجاح الذاتي"></div>
+          <div class="form-group"><label>التصنيف</label><input type="text" id="newCategory" placeholder="مثال: تطوير الذات"></div>
+          <div class="form-group"><label>السعر (بالجنيه)</label><input type="number" id="newPrice" placeholder="50"></div>
+          <div class="form-group"><label>رابط تحميل الـ PDF (رابط جوجل درايف أو ميديافاير)</label><input type="url" id="newPdfUrl" placeholder="https://drive.google.com/..."></div>
+          <div class="form-group"><label>وصف مختصر</label><textarea id="newDesc" rows="2" placeholder="اكتب نبذة قصيرة عن الكتاب..."></textarea></div>
+          <div class="form-group"><label>صورة غلاف الكتاب</label><input type="file" id="newCover" accept="image/*"></div>
+          <button class="btn-save" onclick="addBook()">إضافة الكتاب للمتجر</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SITE={orange:'01275569816',email:'booklib.store@gmail.com',whatsapp:''};
+let catalog=null;
+let storeData={orangeNumber:SITE.orange,email:SITE.email,books:[],orders:[]};
+try{const s=localStorage.getItem('booklib_full_data');if(s)storeData=JSON.parse(s)}catch(e){}
+let currentCategory="All",selectedBookForBuy=null;
+
+function saveData(){try{localStorage.setItem('booklib_full_data',JSON.stringify(storeData))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function safeUrl(u){return /^https?:\/\//i.test(u)?u:'#'}
+
+function renderStore(){
+  document.getElementById('stepOrangeNum').innerText=S('orangeNumber');
+  document.getElementById('stepEmail').innerText=S('email');
+  document.getElementById('footerEmail').innerText=S('email');
+  document.getElementById('displayOrangeNumber').innerText=S('orangeNumber');renderWA();
+  renderCategories();filterBooks();
+}
+function renderCategories(){
+  const c=document.getElementById('categoriesContainer');
+  const cats=["الكل",...new Set(viewBooks().map(b=>b.category))];
+  c.innerHTML='';
+  cats.forEach(cat=>{
+    const d=document.createElement('div');
+    d.className='chip'+((currentCategory===cat||(currentCategory==="All"&&cat==="الكل"))?' active':'');
+    d.textContent=cat;
+    d.onclick=()=>filterCategory(cat,d);
+    c.appendChild(d);
+  });
+}
+function filterCategory(cat,el){
+  currentCategory=(cat==="الكل")?"All":cat;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  if(el)el.classList.add('active');
+  filterBooks();
+}
+function filterBooks(){
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  const container=document.getElementById('booksContainer');
+  const filtered=viewBooks().filter(b=>{
+    const mc=(currentCategory==="All"||b.category===currentCategory);
+    const mq=b.title.toLowerCase().includes(q)||b.category.toLowerCase().includes(q)||b.desc.toLowerCase().includes(q);
+    return mc&&mq;
+  });
+  document.getElementById('booksCountText').innerText=`${filtered.length} كتب متوفرة بصيغة PDF عالية الجودة`;
+  if(filtered.length===0){
+    container.innerHTML=`<div class="empty-state"><h3>المتجر جاهز لاستقبال كتبك الأولى</h3><p>إذا كنت مالك المتجر، سجل الدخول من «لوحة المالك» لإضافة الكتب وتفعيل الكتالوج.</p><button class="btn-primary-custom" onclick="openAdmin()">دخول مالك المتجر</button></div>`;
+    return;
+  }
+  container.innerHTML='<div class="books-grid"></div>';
+  const grid=container.firstChild;
+  filtered.forEach(book=>{
+    grid.innerHTML+=`<div class="book-card"><div><div class="book-cover">${book.cover?`<img src="${esc(book.cover)}" alt="${esc(book.title)}">`:esc(book.title)}</div><div class="book-info"><div class="book-category">${esc(book.category)}</div><h3 class="book-title">${esc(book.title)}</h3><p class="book-desc">${esc(book.desc)}</p></div></div><div class="book-footer"><span class="book-price">${esc(book.price)} جنيه</span><button class="btn-buy" onclick="openBuyModal('${book.id}')">احصل على الكتاب</button></div></div>`;
+  });
+}
+function openBuyModal(id){
+  selectedBookForBuy=viewBooks().find(b=>b.id==id);
+  if(!selectedBookForBuy)return;
+  document.getElementById('buyBookTitle').innerText=selectedBookForBuy.title;
+  document.getElementById('buyBookPrice').innerText=selectedBookForBuy.price+" جنيه";
+  ['buyerName','buyerPhone','buyerTxId'].forEach(i=>document.getElementById(i).value='');
+  if(currentUser){document.getElementById('buyerName').value=currentUser.name;document.getElementById('buyerPhone').value=currentUser.phone}
+  document.getElementById('buyModal').style.display='flex';
+}
+function closeBuyModal(){document.getElementById('buyModal').style.display='none'}
+function submitOrder(){
+  const name=document.getElementById('buyerName').value.trim();
+  const phone=document.getElementById('buyerPhone').value.trim();
+  const txId=document.getElementById('buyerTxId').value.trim();
+  if(!name||!phone||!txId){alert('يرجى إكمال جميع بيانات الطلب (الاسم، الهاتف، ورقم التحويل).');return}
+  storeData.orders.push({id:Date.now(),bookId:selectedBookForBuy.id,bookTitle:selectedBookForBuy.title,name,phone,txId,status:'pending',pdfUrl:selectedBookForBuy.pdfUrl||'#'});
+  saveData();closeBuyModal();
+  alert('تم إرسال طلبك بنجاح! سيتم مراجعته وتفعيل رابط التحميل قريباً.');
+}
+function openMyOrders(){
+  document.getElementById('myOrdersModal').style.display='flex';
+  if(currentUser){document.getElementById('searchPhoneInput').value=currentUser.phone;searchMyOrders()}
+}
+function closeMyOrders(){document.getElementById('myOrdersModal').style.display='none'}
+function searchMyOrders(){
+  const phone=document.getElementById('searchPhoneInput').value.trim();
+  const rc=document.getElementById('myOrdersResult');
+  if(!phone){alert('يرجى إدخال رقم الهاتف أولاً.');return}
+  const list=storeData.orders.filter(o=>o.phone===phone);
+  if(list.length===0){rc.innerHTML='<p style="color:#ef4444;text-align:center">لا توجد طلبات مسجلة بهذا الرقم.</p>';return}
+  rc.innerHTML='<h4 style="margin-bottom:1rem;color:var(--primary)">طلباتك المسجلة:</h4>';
+  list.forEach(o=>{
+    const st=o.status==='approved'
+      ?`<a href="${esc(safeUrl(o.pdfUrl))}" target="_blank" rel="noopener" class="btn-primary-custom" style="padding:.4rem 1rem;font-size:.9rem">تحميل ملف الـ PDF 📥</a>`
+      :`<span style="color:#f59e0b;font-weight:bold">قيد المراجعة من المالك...</span>`;
+    rc.innerHTML+=`<div style="background:#f8fafc;border:1px solid var(--border-color);padding:1rem;border-radius:8px;margin-bottom:.75rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem"><div><strong>${esc(o.bookTitle)}</strong><br><small style="color:#64748b">رقم العملية: ${esc(o.txId)}</small></div><div>${st}</div></div>`;
+  });
+}
+function openAdmin(){prepLogin();document.getElementById('adminModal').style.display='flex'}
+function closeAdmin(){prepLogin();
+  document.getElementById('adminModal').style.display='none';
+  document.getElementById('adminPassword').value='';
+  document.getElementById('adminPanelContent').style.display='none';
+  document.getElementById('loginSection').style.display='block';
+}
+function logoutAdmin(){prepLogin();
+  document.getElementById('adminPanelContent').style.display='none';
+  document.getElementById('loginSection').style.display='block';
+  document.getElementById('adminPassword').value='';
+}
+async function checkPassword(){
+  const pw=document.getElementById('adminPassword').value,pw2=document.getElementById('adminPassword2').value;
+  if(loginMode==='setup'){
+    if(pw.length<6){alert('كلمة المرور لازم تكون 6 أحرف على الأقل.');return}
+    if(pw!==pw2){alert('كلمتا المرور غير متطابقتين.');return}
+    const code=genRecovery();
+    storeData.adminHash=await hashPw(pw);storeData.recoveryHash=await hashPw(code);delete storeData.adminPass;saveData();
+    alert('تم إنشاء كلمة المرور.\n\nكود الاسترجاع الخاص بك (احفظه في مكان آمن، مش هيظهر تاني ولازم تحتاجه لو نسيت كلمة المرور):\n\n'+code);
+    prepLogin();openPanel();return;
+  }
+  if(loginMode==='recover'){
+    if(await hashPw(pw.trim().toUpperCase())!==storeData.recoveryHash){alert('كود الاسترجاع غير صحيح.');return}
+    if(pw2.length<6){alert('كلمة المرور الجديدة لازم تكون 6 أحرف على الأقل.');return}
+    storeData.adminHash=await hashPw(pw2);saveData();
+    alert('تم تغيير كلمة المرور. سجّل دخول بيها.');prepLogin();return;
+  }
+  if(await hashPw(pw)===storeData.adminHash)openPanel();
+  else alert('كلمة المرور غير صحيحة.');
+}
+function openPanel(){
+  {
+    document.getElementById('loginSection').style.display='none';
+    document.getElementById('adminPanelContent').style.display='block';
+    if(!storeData.books.length&&catalog&&catalog.books){storeData.books=catalog.books.slice();saveData()}
+    document.getElementById('settingOrange').value=S('orangeNumber');
+    document.getElementById('settingWA').value=S('whatsapp');
+    document.getElementById('settingEmail').value=S('email');
+    renderAdminData();
+  }
+}
+function switchAdminTab(tab,btn){
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.admin-tab-content').forEach(c=>c.style.display='none');
+  if(btn)btn.classList.add('active');
+  const map={stats:'adminTabStats',orders:'adminTabOrders',books:'adminTabBooks',settings:'adminTabSettings',addBook:'adminTabAddBook'};
+  document.getElementById(map[tab]).style.display='block';
+  if(!btn){const b=tab==='books'?'tabBooksBtn':'tabOrdersBtn';document.getElementById(b).classList.add('active')}
+}
+function renderAdminData(){
+  renderStats();
+  document.getElementById('ordersCountBadge').innerText=storeData.orders.length;
+  document.getElementById('booksCountBadge').innerText=storeData.books.length;
+  const ol=document.getElementById('adminOrdersList');
+  if(storeData.orders.length===0){
+    ol.innerHTML='<p style="color:#64748b;font-size:.9rem;text-align:center">لا توجد طلبات شراء من العملاء حتى الآن.</p>';
+  }else{
+    ol.innerHTML='';
+    storeData.orders.forEach(o=>{
+      const ok=o.status==='approved';
+      ol.innerHTML+=`<div style="background:#fff;padding:1rem;border-radius:8px;margin-bottom:.75rem;border:1px solid var(--border-color)"><div style="display:flex;justify-content:space-between;margin-bottom:.5rem"><strong>${esc(o.name)}</strong><span style="color:var(--accent);font-weight:bold">${esc(o.phone)}</span></div><p style="font-size:.9rem;color:#64748b;margin-bottom:.5rem">الكتاب: <strong>${esc(o.bookTitle)}</strong> | رقم العملية: ${esc(o.txId)}</p><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem"><span style="font-size:.85rem;color:${ok?'#059669':'#f59e0b'};font-weight:bold">${ok?'✓ تم التأكيد والاعتماد':'⏳ بانتظار الاعتماد'}</span><div>${!ok?`<button onclick="approveOrder(${o.id})" style="background:#059669;color:#fff;border:none;padding:.3rem .75rem;border-radius:4px;cursor:pointer;font-size:.85rem;margin-left:5px">اعتماد وتفعيل التحميل</button>`:''}<button onclick="deleteOrder(${o.id})" style="background:#ef4444;color:#fff;border:none;padding:.3rem .75rem;border-radius:4px;cursor:pointer;font-size:.85rem">حذف</button></div></div></div>`;
+    });
+  }
+  const bl=document.getElementById('adminBooksList');
+  if(storeData.books.length===0){
+    bl.innerHTML='<p style="color:#64748b;font-size:.9rem;text-align:center">لا توجد كتب حالياً.</p>';
+  }else{
+    bl.innerHTML='';
+    storeData.books.forEach(b=>{
+      bl.innerHTML+=`<div style="display:flex;justify-content:space-between;align-items:center;background:#fff;padding:.75rem;border-radius:6px;margin-bottom:.5rem;border:1px solid var(--border-color)"><div><strong>${esc(b.title)}</strong> (${esc(b.price)} ج.م)</div><button onclick="pickCover(${b.id})" style="background:#0f172a;color:#fff;border:none;padding:.25rem .6rem;border-radius:4px;cursor:pointer;font-size:.85rem">🖼️ غلاف</button> <button onclick="deleteBook(${b.id})" style="background:#ef4444;color:#fff;border:none;padding:.25rem .75rem;border-radius:4px;cursor:pointer;font-size:.85rem">حذف</button></div>`;
+    });
+  }
+}
+function approveOrder(id){
+  const o=storeData.orders.find(x=>x.id==id);
+  if(o){o.status='approved';saveData();renderAdminData();alert('تم اعتماد الطلب بنجاح، وأصبح بإمكان العميل تحميل الملف برقم هاتفه.')}
+}
+function deleteOrder(id){storeData.orders=storeData.orders.filter(o=>o.id!=id);saveData();renderAdminData()}
+function saveSettings(){
+  storeData.orangeNumber=document.getElementById('settingOrange').value||SITE.orange;
+  storeData.email=document.getElementById('settingEmail').value||SITE.email;
+  storeData.whatsapp=document.getElementById('settingWA').value.trim();storeData.touched=true;
+  
+  
+  saveData();renderStore();alert('تم حفظ بيانات الدفع بنجاح!');
+}
+async function addBook(){
+  const title=document.getElementById('newTitle').value.trim();
+  const category=document.getElementById('newCategory').value.trim();
+  const price=parseFloat(document.getElementById('newPrice').value);
+  const pdfUrl=document.getElementById('newPdfUrl').value.trim();
+  const desc=document.getElementById('newDesc').value.trim();
+  if(!title||isNaN(price)){alert('يرجى كتابة عنوان الكتاب والسعر بشكل صحيح.');return}
+  const cf=document.getElementById('newCover').files[0];
+  const cover=cf?await shrink(cf):'';
+  storeData.books.push({id:Date.now(),title,category:category||"عام",price,pdfUrl:pdfUrl||"#",desc:desc||"كتاب رقمي بصيغة PDF",cover});
+  saveData();renderStore();renderAdminData();
+  ['newTitle','newCategory','newPrice','newPdfUrl','newDesc','newCover'].forEach(i=>document.getElementById(i).value='');
+  alert('تمت إضافة الكتاب بنجاح للمتجر!');
+  switchAdminTab('books');
+}
+function deleteBook(id){storeData.books=storeData.books.filter(b=>b.id!==id);saveData();renderStore();renderAdminData()}
+/* ===== حسابات الزوار والقائمة الجانبية ===== */
+let users=[],currentUser=null,authMode='login',fontLevel=1;
+try{users=JSON.parse(localStorage.getItem('booklib_users')||'[]')}catch(e){}
+try{const sp=localStorage.getItem('booklib_session');if(sp)currentUser=users.find(u=>u.phone===sp)||null}catch(e){}
+try{const f=parseInt(localStorage.getItem('booklib_fs'));if(f>=0&&f<=2)fontLevel=f}catch(e){}
+function saveUsers(){try{localStorage.setItem('booklib_users',JSON.stringify(users))}catch(e){}}
+async function hashPw(p){
+  try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('booklib:'+p));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')}
+  catch(e){return btoa(unescape(encodeURIComponent('booklib:'+p)))}
+}
+function toggleDrawer(open){
+  document.getElementById('drawer').classList.toggle('open',open);
+  document.getElementById('drawerOverlay').style.display=open?'block':'none';
+}
+function goTo(id){toggleDrawer(false);const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'})}
+function setFont(d){
+  fontLevel=d===0?1:Math.max(0,Math.min(2,fontLevel+d));
+  document.documentElement.style.fontSize=[90,100,115][fontLevel]+'%';
+  try{localStorage.setItem('booklib_fs',fontLevel)}catch(e){}
+}
+function accountClick(){currentUser?toggleDrawer(true):openAuth('login')}
+function openAuth(mode){toggleDrawer(false);setAuthMode(mode||'login');document.getElementById('authModal').style.display='flex'}
+function closeAuth(){document.getElementById('authModal').style.display='none';document.getElementById('authMsg').innerText='';document.getElementById('authPass').value=''}
+function setAuthMode(m){
+  authMode=m;const reg=m==='register';
+  document.getElementById('authNameGroup').style.display=reg?'block':'none';
+  document.getElementById('authTitle').innerText=reg?'إنشاء حساب جديد':'تسجيل الدخول';
+  document.getElementById('authSubmitBtn').innerText=reg?'إنشاء الحساب':'دخول';
+  document.getElementById('authTabLogin').classList.toggle('active',!reg);
+  document.getElementById('authTabRegister').classList.toggle('active',reg);
+  document.getElementById('authMsg').innerText='';
+}
+async function submitAuth(){
+  const phone=document.getElementById('authPhone').value.trim();
+  const pass=document.getElementById('authPass').value;
+  const name=document.getElementById('authName').value.trim();
+  const msg=document.getElementById('authMsg');
+  if(!phone||!pass){msg.innerText='اكتب رقم الهاتف وكلمة المرور.';return}
+  if(pass.length<6){msg.innerText='كلمة المرور لازم تكون 6 أحرف على الأقل.';return}
+  const h=await hashPw(pass);
+  if(authMode==='register'){
+    if(!name){msg.innerText='اكتب اسمك.';return}
+    if(users.some(u=>u.phone===phone)){msg.innerText='الرقم ده مسجل قبل كده، جرّب تسجل دخول.';return}
+    const u={name,phone,pw:h};users.push(u);saveUsers();currentUser=u;
+  }else{
+    const u=users.find(x=>x.phone===phone&&x.pw===h);
+    if(!u){msg.innerText='رقم الهاتف أو كلمة المرور غير صحيحة.';return}
+    currentUser=u;
+  }
+  try{localStorage.setItem('booklib_session',currentUser.phone)}catch(e){}
+  closeAuth();updateAccountUI();
+}
+function logout(){
+  currentUser=null;try{localStorage.removeItem('booklib_session')}catch(e){}
+  updateAccountUI();toggleDrawer(false);
+}
+function updateAccountUI(){
+  const btn=document.getElementById('topAccountBtn'),card=document.getElementById('drawerUser');
+  if(currentUser){
+    btn.innerText='👤 '+currentUser.name.split(' ')[0];
+    card.innerHTML='<strong></strong><div style="color:#64748b;font-size:.9rem"></div><button class="drawer-item" style="color:#ef4444;padding:.5rem 0;margin-top:.4rem" onclick="logout()">تسجيل الخروج ↪</button>';
+    card.querySelector('strong').textContent=currentUser.name;
+    card.querySelector('div').textContent=currentUser.phone;
+  }else{
+    btn.innerText='تسجيل الدخول';
+    card.innerHTML='<div style="color:#64748b;font-size:.9rem;margin-bottom:.6rem">سجّل دخولك عشان تتابع طلباتك وتحمّل كتبك بسهولة.</div><button class="btn-primary-custom" style="width:100%;justify-content:center" onclick="openAuth(\'login\')">تسجيل الدخول / حساب جديد</button>';
+  }
+}
+document.documentElement.style.fontSize=[90,100,115][fontLevel]+'%';
+updateAccountUI();
+
+/* ===== إحصائيات المالك ===== */
+function trackVisit(){
+  try{
+    storeData.stats=storeData.stats||{visits:0,visitors:[]};
+    let v=localStorage.getItem('booklib_vid');
+    if(!v){v='v'+Date.now().toString(36);localStorage.setItem('booklib_vid',v)}
+    if(!sessionStorage.getItem('booklib_sv')){
+      sessionStorage.setItem('booklib_sv','1');storeData.stats.visits++;
+      if(!storeData.stats.visitors.includes(v))storeData.stats.visitors.push(v);
+      saveData();
+    }
+  }catch(e){}
+}
+function money(n){return Number(n).toLocaleString('ar-EG')+' جنيه'}
+function renderStats(){
+  const el=document.getElementById('adminStats');if(!el)return;
+  const st=storeData.stats||{visits:0,visitors:[]};
+  const orders=storeData.orders,appr=orders.filter(o=>o.status==='approved'),pend=orders.length-appr.length;
+  const priceOf=o=>{const b=storeData.books.find(x=>x.id==o.bookId);return b?(Number(b.price)||0):0};
+  const revenue=appr.reduce((s,o)=>s+priceOf(o),0);
+  const buyers=new Set(appr.map(o=>o.phone)).size;
+  const visitors=st.visitors.length;
+  const conv=visitors?Math.round(buyers/visitors*100)+'%':'—';
+  const avg=appr.length?Math.round(revenue/appr.length):0;
+  const sales={};
+  appr.forEach(o=>{const s=sales[o.bookId]=sales[o.bookId]||{title:o.bookTitle,n:0,rev:0};s.n++;s.rev+=priceOf(o)});
+  const top=Object.values(sales).sort((a,b)=>b.n-a.n).slice(0,5);
+  const maxN=top.length?top[0].n:1;
+  const days=[];
+  for(let i=6;i>=0;i--){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-i);days.push({t:d.getTime(),n:0,label:d.toLocaleDateString('ar-EG',{weekday:'short'})})}
+  orders.forEach(o=>days.forEach(d=>{if(o.id>=d.t&&o.id<d.t+864e5)d.n++}));
+  const maxD=Math.max(1,...days.map(d=>d.n));
+  const spend={};
+  appr.forEach(o=>{const s=spend[o.phone]=spend[o.phone]||{name:o.name,n:0,sum:0};s.n++;s.sum+=priceOf(o)});
+  const best=Object.values(spend).sort((a,b)=>b.sum-a.sum).slice(0,3);
+  const noLink=storeData.books.filter(b=>!b.pdfUrl||b.pdfUrl==='#').length;
+  const tips=[];
+  if(false)tips.push(['warn','كلمة مرور لوحة التحكم لسه الافتراضية (1234). غيّرها من تبويب «بيانات الدفع».']);
+  if(pend>0)tips.push(['warn','عندك '+pend+' طلب بانتظار الاعتماد. الرد السريع بيزوّد ثقة العملاء.']);
+  if(noLink>0)tips.push(['warn',noLink+' كتاب من غير رابط تحميل، والعميل مش هيقدر يحمّله بعد الاعتماد.']);
+  if(storeData.books.length===0)tips.push(['','ابدأ بإضافة أول كتاب من تبويب «إضافة كتاب».']);
+  else if(storeData.books.length<5)tips.push(['','الكتالوج صغير. إضافة 5 كتب على الأقل بتخلي المتجر يبان أقوى.']);
+  if(visitors>0&&buyers===0)tips.push(['','فيه زوار ومفيش مشترين لسه: جرّب كتاب بسعر تجريبي أو عينة مجانية.']);
+  tips.push(['','اعمل باقة (مثلاً 3 كتب بسعر أقل) عشان ترفع متوسط قيمة الطلب.']);
+  tips.push(['','وفّر عينة مجانية (أول صفحات الكتاب) لكل كتاب عشان تزوّد الثقة.']);
+  tips.push(['','اطلب من كل مشتري تقييم بسيط وانشره على صفحة المتجر.']);
+  el.innerHTML=`
+<div class="tip warn">ℹ️ الأرقام دي محسوبة من بيانات المتصفح ده فقط (زوار وطلبات الجهاز ده). لما المتجر يتنقل لاستضافة فيها قاعدة بيانات هتبقى أرقام كل الزوار والعملاء.</div>
+<div class="stat-grid">
+<div class="stat-card"><small>👥 زوار (أجهزة مختلفة)</small><b>${visitors}</b></div>
+<div class="stat-card"><small>👁️ مرات الزيارة</small><b>${st.visits}</b></div>
+<div class="stat-card"><small>🧑 حسابات مسجلة</small><b>${users.length}</b></div>
+<div class="stat-card"><small>📚 عدد الكتب</small><b>${storeData.books.length}</b></div>
+<div class="stat-card"><small>🛒 كل الطلبات</small><b>${orders.length}</b></div>
+<div class="stat-card"><small>✅ مشترين (طلبات معتمدة)</small><b>${buyers}</b></div>
+<div class="stat-card"><small>⏳ بانتظار الاعتماد</small><b>${pend}</b></div>
+<div class="stat-card"><small>📊 نسبة التحويل</small><b>${conv}</b></div>
+<div class="stat-card"><small>💰 الإيرادات</small><b>${money(revenue)}</b></div>
+<div class="stat-card"><small>📈 متوسط الطلب</small><b>${money(avg)}</b></div>
+</div>
+<div class="stat-box"><h4>🏆 الكتب الأكثر مبيعاً</h4>${top.length?top.map(t=>`<div class="bar-row"><span class="lbl">${esc(t.title)}</span><span class="bar" style="width:${Math.round(t.n/maxN*45)+5}%"></span><span>${t.n} (${money(t.rev)})</span></div>`).join(''):'<p style="color:#64748b;font-size:.9rem">لسه مفيش مبيعات معتمدة.</p>'}</div>
+<div class="stat-box"><h4>🗓️ الطلبات آخر 7 أيام</h4><div class="cols">${days.map(d=>`<div><span>${d.n}</span><i style="height:${Math.round(d.n/maxD*60)}px"></i><span>${d.label}</span></div>`).join('')}</div></div>
+<div class="stat-box"><h4>⭐ أفضل العملاء</h4>${best.length?best.map(b=>`<div class="bar-row"><span class="lbl" style="width:50%">${esc(b.name)}</span><span>${b.n} طلب · ${money(b.sum)}</span></div>`).join(''):'<p style="color:#64748b;font-size:.9rem">لسه مفيش عملاء.</p>'}</div>
+<div class="stat-box"><h4>💡 اقتراحات ليك</h4>${tips.map(t=>`<div class="tip ${t[0]}">${esc(t[1])}</div>`).join('')}</div>`;
+}
+/* ===== كلمة مرور المالك ===== */
+let loginMode='login';
+function genRecovery(){
+  const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let s='';const a=new Uint8Array(12);crypto.getRandomValues(a);
+  a.forEach((x,i)=>{s+=c[x%c.length];if(i%4===3&&i<11)s+='-'});return s;
+}
+function prepLogin(m){
+  loginMode=!storeData.adminHash?'setup':(m||'login');
+  const L={setup:['أول مرة؟ اختر كلمة مرور للوحة التحكم (6 أحرف على الأقل)','إنشاء كلمة المرور'],login:['أدخل كلمة المرور','دخول لوحة التحكم'],recover:['اكتب كود الاسترجاع','استعادة الحساب']}[loginMode];
+  document.getElementById('loginLabel').innerText=L[0];
+  document.getElementById('loginBtn').innerText=L[1];
+  document.getElementById('confirmGroup').style.display=loginMode==='login'?'none':'block';
+  document.getElementById('confirmLabel').innerText=loginMode==='recover'?'كلمة المرور الجديدة':'أعد كتابة كلمة المرور';
+  document.getElementById('forgotBtn').style.display=loginMode==='login'?'block':'none';
+  document.getElementById('adminPassword').type=loginMode==='recover'?'text':'password';
+  document.getElementById('adminPassword').value='';document.getElementById('adminPassword2').value='';
+}
+async function newRecovery(){
+  const o=document.getElementById('settingOldPass').value;
+  if(await hashPw(o)!==storeData.adminHash){alert('اكتب كلمة المرور الحالية في خانة «كلمة المرور الحالية» الأول.');return}
+  const code=genRecovery();
+  storeData.recoveryHash=await hashPw(code);saveData();
+  document.getElementById('settingOldPass').value='';
+  const box=document.getElementById('newCodeBox');
+  box.style.display='block';box.textContent=code;
+}
+async function changePassword(){
+  const o=document.getElementById('settingOldPass').value,n=document.getElementById('settingPass').value;
+  if(await hashPw(o)!==storeData.adminHash){alert('كلمة المرور الحالية غير صحيحة.');return}
+  if(n.length<6){alert('كلمة المرور الجديدة لازم تكون 6 أحرف على الأقل.');return}
+  storeData.adminHash=await hashPw(n);saveData();
+  document.getElementById('settingOldPass').value='';document.getElementById('settingPass').value='';
+  alert('تم تغيير كلمة المرور.');
+}
+function viewBooks(){return storeData.books.length?storeData.books:((catalog&&catalog.books)||[])}
+function S(k){
+  const d={orangeNumber:SITE.orange,email:SITE.email,whatsapp:SITE.whatsapp};
+  if(storeData.touched&&storeData[k])return storeData[k];
+  if(catalog&&catalog[k])return catalog[k];
+  return d[k];
+}
+async function loadCatalog(){
+  try{const r=await fetch('catalog.json?v='+Date.now(),{cache:'no-store'});if(r.ok)catalog=await r.json()}catch(e){}
+  renderStore();
+}
+function renderWA(){
+  let b=document.getElementById('waBtn');const n=(S('whatsapp')||'').replace(/\D/g,'');
+  if(!n){if(b)b.remove();return}
+  const full=n.startsWith('0')?'20'+n.slice(1):n;
+  if(!b){b=document.createElement('a');b.id='waBtn';b.className='wa-btn';b.target='_blank';b.rel='noopener';b.setAttribute('aria-label','WhatsApp');b.textContent='💬';document.body.appendChild(b)}
+  b.href='https://wa.me/'+full+'?text='+encodeURIComponent('مرحباً، عندي استفسار عن متجر Booklib');
+}
+function prepOrderForm(){
+  const f=document.getElementById('orderForm'),em=S('email'),bk=selectedBookForBuy;
+  f.action='https://formsubmit.co/'+em;
+  document.getElementById('fsSubject').value='طلب كتاب جديد: '+bk.title;
+  document.getElementById('fsBook').value=bk.title;
+  document.getElementById('fsPrice').value=bk.price+' جنيه';
+  document.getElementById('buyerEmail').value='';
+  document.getElementById('mailFallback').href='mailto:'+em+'?subject='+encodeURIComponent('طلب كتاب: '+bk.title)+'&body='+encodeURIComponent('الكتاب: '+bk.title+'\nالسعر: '+bk.price+' جنيه\nالاسم:\nرقم الهاتف:\n\n(مهم: أرفق سكرين شوت عملية التحويل)');
+}
+function submitOrderMail(e){
+  const f=document.getElementById('orderForm');
+  const name=f.elements['الاسم'].value.trim(),phone=f.elements['الهاتف'].value.trim();
+  if(!name||!phone){alert('اكتب اسمك ورقم هاتفك.');return false}
+  const bk=selectedBookForBuy,em=S('email');
+  const tx=f.elements['رقم_العملية'].value.trim(),mail=f.elements['email'].value.trim();
+  storeData.orders.push({id:Date.now(),bookId:bk.id,bookTitle:bk.title,name,phone,txId:tx||'—',status:'sent',pdfUrl:'#'});
+  saveData();
+  const body='طلب شراء كتاب\n\nالكتاب: '+bk.title+'\nالسعر: '+bk.price+' جنيه\nالاسم: '+name+'\nرقم الهاتف: '+phone+(mail?'\nالإيميل: '+mail:'')+(tx?'\nرقم عملية التحويل: '+tx:'')+'\n\n⚠️ مرفق: سكرين شوت التحويل';
+  const url='mailto:'+em+'?subject='+encodeURIComponent('طلب كتاب: '+bk.title)+'&body='+encodeURIComponent(body);
+  closeBuyModal();
+  alert('هيفتح الإيميل دلوقتي. أرفق سكرين شوت التحويل وابعت الرسالة، وهيتم استلام الـ PDF خلال 24 ساعة بعد المراجعة.');
+  window.location.href=url;
+  return false;
+}
+const DOCS={
+refund:['سياسة الاسترجاع','الكتب عندنا رقمية (PDF)، ولذلك:\n• لو الملف وصلك تالف أو مش بيفتح أو مش هو الكتاب اللي طلبته، هنبعتلك الملف الصحيح أو نرجّع لك المبلغ كاملاً خلال 24 ساعة من استلامك.\n• لو حوّلت المبلغ ومستلمتش الكتاب خلال 24 ساعة، تواصل معانا وهنسلّمك الكتاب أو نرجّع لك فلوسك.\n• لو الكتاب اتسلّم سليم وفتح معاك، مفيش استرجاع لأنه محتوى رقمي لا يمكن إعادته.\n• لو حوّلت مبلغ غلط أو مرتين، ابعتلنا سكرين شوت التحويل وهنرجّع الفرق.'],
+terms:['الشروط والأحكام','• الكتب للاستخدام الشخصي فقط، ويُمنع إعادة بيعها أو نشرها أو مشاركتها.\n• التسليم بيتم خلال 24 ساعة بعد مراجعة التحويل.\n• السعر المعتمد هو السعر المعروض وقت إرسال الطلب، والمتجر ممكن يعدّل الأسعار في أي وقت.\n• العميل مسؤول عن صحة البيانات ورقم الهاتف اللي بيكتبها، والمتجر مش مسؤول عن تحويل لرقم غلط.\n• حقوق الكتب محفوظة لأصحابها.\n• باستخدامك للموقع وإرسال طلب شراء، فأنت موافق على الشروط دي.'],
+privacy:['سياسة الخصوصية','• بنجمع الاسم ورقم الهاتف والإيميل (اختياري) ورقم عملية التحويل وصورة سكرين شوت التحويل.\n• البيانات دي بتُستخدم فقط لمراجعة الدفع وتسليم الكتاب والتواصل معك.\n• الطلب بيتبعت لإيميل المتجر عن طريق تطبيق الإيميل على جهازك.\n• مبنبيعش بياناتك ومبنشاركهاش مع أي جهة إعلانية.\n• بيانات حسابك وطلباتك المعروضة في الموقع بتتخزن في متصفحك أنت فقط.\n• لطلب حذف بياناتك، ابعتلنا على إيميل المتجر.'],
+faq:['الأسئلة الشائعة','س: إزاي أشتري كتاب؟\nج: دوس «احصل على الكتاب»، حوّل المبلغ على أورانج كاش، وارفع سكرين شوت التحويل مع بياناتك.\n\nس: هستلم الكتاب إمتى؟\nج: خلال 24 ساعة بعد مراجعة التحويل.\n\nس: الكتاب بيجيلي إزاي؟\nج: ملف PDF على الواتساب أو الإيميل.\n\nس: لو حصلت مشكلة؟\nج: تواصل معانا على الإيميل أو الواتساب وهنحلها بسرعة.']
+};
+function openDoc(k){
+  toggleDrawer(false);
+  document.getElementById('docTitle').textContent=DOCS[k][0];
+  document.getElementById('docBody').textContent=DOCS[k][1]+'\n\nللتواصل: '+S('email')+(S('whatsapp')?' · واتساب: '+S('whatsapp'):'');
+  document.getElementById('docModal').style.display='flex';
+}
+function shrink(file){return new Promise((res,rej)=>{
+  const r=new FileReader();r.onerror=rej;
+  r.onload=()=>{const im=new Image();im.onerror=rej;im.onload=()=>{
+    const s=Math.min(1,420/Math.max(im.width,im.height)),w=Math.round(im.width*s),h=Math.round(im.height*s);
+    const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,w,h);x.drawImage(im,0,0,w,h);
+    res(c.toDataURL('image/jpeg',.8))};im.src=r.result};
+  r.readAsDataURL(file);
+})}
+function pickCover(id){
+  const i=document.createElement('input');i.type='file';i.accept='image/*';
+  i.onchange=async()=>{const f=i.files[0];if(!f)return;const b=storeData.books.find(x=>x.id==id);if(b){b.cover=await shrink(f);saveData();renderStore();renderAdminData()}};
+  i.click();
+}
+function exportCatalog(){
+  const data={orangeNumber:S('orangeNumber'),email:S('email'),whatsapp:S('whatsapp')||'',books:storeData.books.map(b=>({id:b.id,title:b.title,category:b.category,price:b.price,desc:b.desc,cover:b.cover||''}))};
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data)],{type:'application/json'}));
+  a.download='catalog.json';document.body.appendChild(a);a.click();a.remove();
+}
+function toggleDark(){
+  const d=!document.documentElement.classList.contains('dark');
+  document.documentElement.classList.toggle('dark',d);
+  try{localStorage.setItem('booklib_dark',d?'1':'')}catch(e){}
+}
+try{if(localStorage.getItem('booklib_dark'))document.documentElement.classList.add('dark')}catch(e){}
+prepLogin();
+trackVisit();
+renderStore();
+loadCatalog();
+/* ===== اللغة ===== */
+const EN={"تسجيل الدخول": "Log in", "القائمة": "Menu", "متجر الكتب الرقمية · تسليم فوري بصيغة PDF": "Digital bookstore · PDF delivery", "مكتبتك الرقمية لتحميل الكتب وقراءتها فوراً": "Your digital library: get books and start reading right away", "اكتشف مجموعة مختارة من الكتب العربية العملية في تطوير الذات، القصص الملهمة، والعمل الحر. اطلب نسختك الرقمية بسهولة عبر أورانج كاش واستلم ملف الـ PDF خلال 24 ساعة من تأكيد التحويل.": "Discover a curated selection of practical Arabic books on self-development, inspiring stories and freelancing. Order your digital copy easily via Orange Cash and receive the PDF within 24 hours of confirming the transfer.", "تصفح الكتب المتاحة ↘": "Browse available books ↘", "طلباتي وتحميل الكتب": "My orders", "الكتب المتاحة للتحميل": "Available books", "ابحث باسم الكتاب أو التصنيف...": "Search by title or category...", "الكل": "All", "احصل على الكتاب": "Get the book", "المتجر جاهز لاستقبال كتبك الأولى": "The store is getting ready", "إذا كنت مالك المتجر، سجل الدخول من «لوحة المالك» لإضافة الكتب وتفعيل الكتالوج.": "If you are the store owner, log in to the owner panel to add books.", "دخول مالك المتجر": "Owner login", "كيف تحصل على كتابك؟": "How to get your book", "ثلاث خطوات بسيطة لشراء أي كتاب واستلام ملف الـ PDF مباشرة.": "Three simple steps to buy any book and receive the PDF.", "اختر الكتاب المناسب": "Choose your book", "اضغط على «احصل على الكتاب» في البطاقة لعرض تفاصيل السعر ورقم التحويل الخاص بالمتجر.": "Tap “Get the book” on the card to see the price and the store's transfer number.", "حوّل وأكّد طلبك أونلاين": "Transfer and confirm online", "حوّل قيمة الكتاب على رقم أورانج كاش": "Transfer the price to Orange Cash number", "وارفع سكرين شوت التحويل داخل نافذة الشراء.": "and upload a screenshot of the transfer in the purchase window.", "استلم كتابك خلال 24 ساعة": "Receive your book within 24 hours", "هيتم استلام ملف الـ PDF خلال 24 ساعة بعد مراجعة التحويل. لأي استفسار راسلنا على": "You will receive the PDF within 24 hours after we review the transfer. For any questions, email us at", "نبذة عن Booklib": "About Booklib", "فكرة المتجر:": "The idea:", "Booklib متجر عربي للكتب الرقمية بصيغة PDF. الفكرة بسيطة: تختار الكتاب، تحوّل ثمنه عبر أورانج كاش، وترفع سكرين شوت التحويل، وتستلم الكتاب خلال 24 ساعة.": "Booklib is an Arabic store for digital books in PDF format. It is simple: choose a book, transfer the price via Orange Cash, upload a screenshot of the transfer, and receive the book within 24 hours.", "بنقدّم كتب عملية في تطوير الذات والقصص الملهمة والعمل الحر، بأسعار مناسبة وبدون تعقيد، عشان القراءة توصل لأي حد في أي وقت من الموبايل أو الكمبيوتر.": "We offer practical books on self-development, inspiring stories and freelancing at fair prices and without complications, so reading reaches anyone, anytime, from a phone or a computer.", "إزاي بنشتغل؟": "How do we work?", "كل طلب بنراجع فيه التحويل يدوياً، وبعدها بنبعتلك ملف الـ PDF خلال 24 ساعة على الواتساب أو الإيميل. لو عندك أي استفسار راسلنا على البريد الموجود أسفل الصفحة.": "We review every transfer manually, then send you the PDF within 24 hours via WhatsApp or email. For any questions, email us at the address at the bottom of the page.", "Booklib · متجر الكتب الرقمية": "Booklib · Digital bookstore", "طلباتي": "My orders", "لوحة تحكم المالك": "Owner panel", "سياسة الاسترجاع": "Refund policy", "الشروط والأحكام": "Terms of service", "سياسة الخصوصية": "Privacy policy", "الأسئلة الشائعة": "FAQ", "سجّل دخولك عشان تتابع طلباتك وتحمّل كتبك بسهولة.": "Log in to follow your orders easily.", "تسجيل الدخول / حساب جديد": "Log in / Sign up", "📚 تصفح الكتب": "📚 Browse books", "📥 طلباتي وتحميل الكتب": "📥 My orders", "ℹ️ نبذة عن المتجر": "ℹ️ About the store", "↩️ سياسة الاسترجاع": "↩️ Refund policy", "📜 الشروط والأحكام": "📜 Terms of service", "🔒 سياسة الخصوصية": "🔒 Privacy policy", "❓ الأسئلة الشائعة": "❓ FAQ", "الإعدادات": "Settings", "حجم الخط": "Font size", "أ-": "A-", "عادي": "Normal", "أ+": "A+", "🌓 الوضع الليلي / النهاري": "🌓 Dark / Light mode", "🔑 لوحة المالك": "🔑 Owner panel", "تسجيل الخروج ↪": "Log out ↪", "دخول": "Log in", "حساب جديد": "Sign up", "إنشاء حساب جديد": "Create a new account", "إنشاء الحساب": "Create account", "الاسم": "Name", "اسمك الكامل": "Your full name", "رقم الهاتف": "Phone number", "كلمة المرور": "Password", "6 أحرف على الأقل": "At least 6 characters", "خطوات الشراء والدفع": "Purchase steps", "لشراء كتاب:": "To buy:", "1. حوّل مبلغ": "1. Transfer", "عبر محفظة": "via the", "أورانج كاش": "Orange Cash", "على الرقم:": "wallet to the number:", "2. صوّر": "2. Take a", "سكرين شوت": "screenshot", "لعملية التحويل، واكتب بياناتك وارفع الصورة هنا:": "of the transfer, then enter your details and upload it here:", "الاسم:": "Name:", "رقم الهاتف (واتساب):": "Phone number (WhatsApp):", "الإيميل (اختياري):": "Email (optional):", "رقم عملية التحويل (اختياري):": "Transaction number (optional):", "سكرين شوت التحويل (مطلوب):": "Transfer screenshot (required):", "3. هيتم استلام ملف الـ PDF خلال": "3. You will receive the PDF within", "24 ساعة": "24 hours", "بعد مراجعة التحويل.": "after we review the transfer.", "إرسال الطلب": "Send order", "لو الطلب ما وصلش؟ ابعته بالإيميل": "Order not sent? Send it by email", "متابعة طلباتي وتحميل الكتب": "My orders", "أدخل رقم هاتفك المسجل أثناء الشراء:": "Enter the phone number you used when ordering:", "رقم الهاتف...": "Phone number...", "بحث": "Search", "ابحث برقم هاتفك لعرض الطلبات والروابط المتاحة.": "Search with your phone number to see your orders.", "لا توجد طلبات مسجلة بهذا الرقم.": "No orders found for this number.", "طلباتك المسجلة:": "Your orders:", "قيد المراجعة من المالك...": "Under review...", "تحميل ملف الـ PDF 📥": "Download PDF 📥", "اكتب رقم الهاتف وكلمة المرور.": "Enter your phone number and password.", "كلمة المرور لازم تكون 6 أحرف على الأقل.": "Password must be at least 6 characters.", "اكتب اسمك.": "Enter your name.", "الرقم ده مسجل قبل كده، جرّب تسجل دخول.": "This number is already registered, try logging in.", "رقم الهاتف أو كلمة المرور غير صحيحة.": "Phone number or password is incorrect.", "اكتب اسمك ورقم هاتفك.": "Enter your name and phone number.", "لازم ترفع سكرين شوت التحويل.": "You must upload the transfer screenshot.", "تم إرسال طلبك ✅": "Your order was sent ✅", "هيتم استلام ملف الـ PDF خلال 24 ساعة بعد مراجعة التحويل.": "You will receive the PDF within 24 hours after we review the transfer.", "يرجى إدخال رقم الهاتف أولاً.": "Please enter your phone number first."};
+const PAT=[["^(\\d+) كتب متوفرة بصيغة PDF عالية الجودة$", "$1 books available as high-quality PDF"], ["^(\\d+(?:\\.\\d+)?) جنيه$", "$1 EGP"], ["^رقم العملية: (.*)$", "Transaction no.: $1"]].map(a=>[new RegExp(a[0]),a[1]]);
+const DOCS_EN={"refund": ["Refund policy", "Our books are digital (PDF), so:\n• If the file arrives damaged, will not open, or is not the book you ordered, we will send the correct file or refund you in full within 24 hours of receiving it.\n• If you transferred the money and did not receive the book within 24 hours, contact us and we will deliver the book or refund you.\n• If the book was delivered and opens correctly, there is no refund because digital content cannot be returned.\n• If you transferred the wrong amount or twice, send us the transfer screenshot and we will refund the difference."], "terms": ["Terms of service", "• Books are for personal use only; reselling, publishing or sharing is not allowed.\n• Delivery takes place within 24 hours after we review the transfer.\n• The price is the one shown when you send your order; the store may change prices at any time.\n• You are responsible for the accuracy of the details you enter; the store is not responsible for transfers sent to a wrong number.\n• Book rights belong to their owners.\n• By using the site and sending an order, you agree to these terms."], "privacy": ["Privacy policy", "• We collect your name, phone number, email (optional), transaction number and the transfer screenshot.\n• This data is used only to verify payment, deliver the book and contact you.\n• Your order is sent to the store's email through your device's email app.\n• We do not sell your data or share it with advertisers.\n• Your account and orders shown on the site are stored in your own browser only.\n• To request deletion of your data, email us."], "faq": ["FAQ", "Q: How do I buy a book?\nA: Tap “Get the book”, transfer the price via Orange Cash, and upload the transfer screenshot with your details.\n\nQ: When will I receive it?\nA: Within 24 hours after we review the transfer.\n\nQ: How is the book delivered?\nA: As a PDF via WhatsApp or email.\n\nQ: What if there is a problem?\nA: Contact us by email or WhatsApp and we will fix it quickly."]};
+let LANG='ar',_busy=false;
+try{if(localStorage.getItem('booklib_lang')==='en')LANG='en'}catch(e){}
+const _norm=x=>x.replace(/\u00a0/g,' ').replace(/\s+/g,' ').trim();
+function T(str){
+  const n=_norm(str);if(!n)return str;
+  let r=EN[n];
+  if(r===undefined){for(const p of PAT){if(p[0].test(n)){r=n.replace(p[0],p[1]);break}}}
+  if(r===undefined)return str;
+  return str.match(/^\s*/)[0]+r+str.match(/\s*$/)[0];
+}
+function _skip(el){return el&&el.closest&&el.closest('[data-notr],#adminModal,script,style,iframe')}
+function walk(root){
+  if(!root)return;
+  const w=document.createTreeWalker(root.nodeType===3?root.parentNode:root,NodeFilter.SHOW_TEXT);
+  let n;const nodes=[];while(n=w.nextNode())nodes.push(n);
+  nodes.forEach(t=>{
+    if(_skip(t.parentNode))return;
+    if(LANG==='en'){
+      if(t.__ar===undefined){if(!/[\u0600-\u06FF]/.test(t.nodeValue))return;t.__ar=t.nodeValue}
+      t.nodeValue=T(t.__ar);
+    }else if(t.__ar!==undefined){t.nodeValue=t.__ar}
+  });
+  const els=root.nodeType===1?[...root.querySelectorAll('[placeholder]')]:[];
+  els.forEach(e=>{
+    if(_skip(e))return;
+    if(LANG==='en'){if(e.dataset.phAr===undefined)e.dataset.phAr=e.placeholder;e.placeholder=T(e.dataset.phAr)}
+    else if(e.dataset.phAr!==undefined)e.placeholder=e.dataset.phAr;
+  });
+}
+new MutationObserver(ms=>{
+  if(LANG!=='en'||_busy)return;
+  _busy=true;ms.forEach(m=>m.addedNodes.forEach(n=>{if(n.nodeType===1||n.nodeType===3)walk(n)}));_busy=false;
+}).observe(document.body,{childList:true,subtree:true});
+const _alert=window.alert.bind(window);
+window.alert=m=>_alert(LANG==='en'?String(m).split('\n').map(T).join('\n'):m);
+function setLang(l){
+  LANG=l;document.documentElement.lang=l;document.documentElement.dir=l==='en'?'ltr':'rtl';
+  _busy=true;walk(document.body);_busy=false;
+  document.getElementById('langBtn').textContent=l==='en'?'ع':'EN';
+  document.getElementById('drawerLang').textContent=l==='en'?'🌐 العربية':'🌐 English';
+  try{localStorage.setItem('booklib_lang',l)}catch(e){}
+}
+function toggleLang(){setLang(LANG==='en'?'ar':'en')}
+function openDoc(k){
+  toggleDrawer(false);
+  const d=LANG==='en'?DOCS_EN[k]:DOCS[k];
+  document.getElementById('docTitle').textContent=d[0];
+  const wa=S('whatsapp');
+  document.getElementById('docBody').textContent=d[1]+'\n\n'+(LANG==='en'?'Contact: ':'للتواصل: ')+S('email')+(wa?(LANG==='en'?' · WhatsApp: ':' · واتساب: ')+wa:'');
+  document.getElementById('docModal').style.display='flex';
+}
+Object.assign(EN,{
+"لعملية التحويل (هترفقه في الإيميل)، واكتب بياناتك:":"of the transfer (you will attach it to the email), then enter your details:",
+"وابعت سكرين شوت التحويل مع طلبك بالإيميل.":"and send a screenshot of the transfer with your order by email.",
+"إرسال الطلب بالإيميل":"Send order by email",
+"⚠️ هيفتح تطبيق الإيميل برسالة جاهزة.":"⚠️ Your email app will open with a ready message.",
+"لازم ترفق سكرين شوت التحويل":"You must attach the transfer screenshot",
+"في الإيميل قبل ما تبعته.":"to the email before sending it.",
+"هيفتح الإيميل دلوقتي. أرفق سكرين شوت التحويل وابعت الرسالة، وهيتم استلام الـ PDF خلال 24 ساعة بعد المراجعة.":"Your email will open now. Attach the transfer screenshot and send the message; you will receive the PDF within 24 hours after review."
+});
+Object.assign(EN,{
+"اسمك الكريم:":"Your name:","أدخل اسمك الكامل":"Enter your full name","1. تحويل مبلغ":"1. Transfer",
+"رقم هاتف التحويل (أو رقم المحفظة المحول منها):":"Phone number (or the wallet number you transferred from):","مثال: 010xxxxxxxx":"e.g. 010xxxxxxxx",
+"رقم عملية التحويل (الرقم المرجعي):":"Transaction reference number:","اكتب رقم العملية من رسالة التأكيد":"Enter the number from the confirmation message",
+"إرسال طلب الشراء للمالك":"Send purchase request to the owner",
+"يرجى إكمال جميع بيانات الطلب (الاسم، الهاتف، ورقم التحويل).":"Please fill in all order details (name, phone and transfer number).",
+"تم إرسال طلبك بنجاح! سيتم مراجعته وتفعيل رابط التحميل قريباً.":"Your order was sent successfully! It will be reviewed soon."
+});
+function sendEmailOrder(){
+  const name=document.getElementById('buyerName').value.trim(),phone=document.getElementById('buyerPhone').value.trim(),tx=document.getElementById('buyerTxId').value.trim();
+  if(!name||!phone){alert('اكتب اسمك ورقم هاتفك الأول.');return}
+  const bk=selectedBookForBuy,em=S('email'),key=bk.id+'|'+phone+'|'+tx;
+  if(window._lastOrderKey!==key){
+    window._lastOrderKey=key;
+    storeData.orders.push({id:Date.now(),bookId:bk.id,bookTitle:bk.title,name,phone,txId:tx||'—',status:'sent',pdfUrl:'#'});saveData();
+  }
+  const body='طلب شراء كتاب\n\nالكتاب: '+bk.title+'\nالسعر: '+bk.price+' جنيه\nالاسم: '+name+'\nرقم الهاتف: '+phone+(tx?'\nرقم عملية التحويل: '+tx:'')+'\n\n⚠️⚠️ مهم جداً: لازم ترفق سكرين شوت التحويل في هذا الإيميل قبل الإرسال، من غيره مش هنقدر نؤكد طلبك.\n\n📝 هيتم استلام ملف الـ PDF خلال 24 ساعة بعد مراجعة التحويل.';
+  const url='mailto:'+em+'?subject='+encodeURIComponent('طلب كتاب: '+bk.title+' (مرفق سكرين شوت التحويل)')+'&body='+encodeURIComponent(body);
+  alert('هيفتح الإيميل دلوقتي برسالة جاهزة فيها بيانات طلبك.\n⚠️ لازم ترفق سكرين شوت التحويل في الإيميل قبل ما تبعته، من غيره مش هيتم تأكيد الطلب.\nهيتم استلام الـ PDF خلال 24 ساعة بعد مراجعة التحويل.');
+  window.location.href=url;
+}
+Object.assign(EN,{
+"اسمك:":"Your name:","مهم جداً:":"Very important:","لازم ترسل":"You must send","سكرين شوت التحويل":"the transfer screenshot","عبر الإيميل عشان يتم تأكيد طلبك.":"by email so your order can be confirmed.",
+"📧 إرسال سكرين التحويل عبر الإيميل":"📧 Send the transfer screenshot by email","📝 ملحوظة: سيتم استلام ملف الـ PDF خلال":"📝 Note: you will receive the PDF within",
+"اكتب اسمك ورقم هاتفك الأول.":"Enter your name and phone number first.","هيفتح الإيميل دلوقتي برسالة جاهزة فيها بيانات طلبك.":"Your email will open now with a ready message containing your order details.",
+"⚠️ لازم ترفق سكرين شوت التحويل في الإيميل قبل ما تبعته، من غيره مش هيتم تأكيد الطلب.":"⚠️ You must attach the transfer screenshot to the email before sending it; without it the order will not be confirmed.",
+"هيتم استلام الـ PDF خلال 24 ساعة بعد مراجعة التحويل.":"You will receive the PDF within 24 hours after we review the transfer."
+});
+if(LANG==='en')setLang('en');
+</script>
+</body>
+</html>
